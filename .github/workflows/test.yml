@@ -22,13 +22,10 @@ jobs:
           go-version: 1.15
 
       - name: Run Tests (with coverage report)
-        run: go test ./... -coverprofile=coverage.out
+        run: go test ./... -race -coverprofile=coverage.txt -covermode=atomic
 
-      - name: Generate Coverage HTML File
-        run: go tool cover -html=coverage.out -o=coverage.html
-
-      - name: Upload Coverage Artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload to CodeCov
+        uses: codecov@codecov-action@v1
         with:
-          name: coverage
-          path: coverage.html
+          file: ./coverage.txt
+          verbose: true
