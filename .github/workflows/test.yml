@@ -21,5 +21,14 @@ jobs:
         with:
           go-version: 1.15
 
-      - name: Run Tests
-        run: go test ./...
+      - name: Run Tests (with coverage report)
+        run: go test ./... -coverprofile=coverage.out
+
+      - name: Generate Coverage HTML File
+        run: go tool cover -html=coverage.out -o=coverage.html
+
+      - name: Upload Coverage Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverage.html
