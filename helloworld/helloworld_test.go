@@ -1,4 +1,4 @@
-package main
+package helloworld
 
 import (
 	"testing"
@@ -8,4 +8,8 @@ import (
 
 func TestHelloWorld(t *testing.T) {
 	assert.Equal(t, "Hello, world!", HelloWorld())
+}
+
+func TestShoutHelloWorld(t *testing.T) {
+	assert.Equal(t, "HELLO, WORLD!", ShoutHelloWorld())
 }
