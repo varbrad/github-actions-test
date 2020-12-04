@@ -1,4 +1,4 @@
-name: Super-Linter
+name: Learning GitHub Actions
 
 # Run this workflow every time a new commit pushed to your repository
 on: push
@@ -6,20 +6,21 @@ on: push
 jobs:
   # Set the job key. The key is displayed as the job name
   # when a job name is not provided
-  super-lint:
+  check-bats-version:
     # Name the Job
-    name: Lint code base
+    name: Check Bats Version
     # Set the type of machine to run on
     runs-on: ubuntu-latest
 
     steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Runs the Super-Linter action
-      - name: Run Super-Linter
-        uses: github/super-linter@v3
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Node
+        uses: actions/setup-node@v1
+
+      - name: Install Bats
+        runs: npm install -g bats
+
+      - name: Get Bats Version
+        runs: bats -v
