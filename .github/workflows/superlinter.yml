@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v1
 
       - name: Install Bats
-        runs: npm install -g bats
+        run: npm install -g bats
 
       - name: Get Bats Version
-        runs: bats -v
+        run: bats -v
