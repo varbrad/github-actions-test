@@ -37,3 +37,12 @@ func TestWallet(t *testing.T) {
 		assert.Error(t, err)
 	})
 }
+
+func TestBitcoin(t *testing.T) {
+	t.Run("String", func(t *testing.T) {
+		actual := Bitcoin(10).String()
+		expected := "10 BTC"
+
+		assert.Equal(t, expected, actual)
+	})
+}
